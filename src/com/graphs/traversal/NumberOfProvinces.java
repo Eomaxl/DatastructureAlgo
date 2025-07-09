@@ -28,6 +28,18 @@ public class NumberOfProvinces {
     }
 
     public static int numProvinces(int[][] adj) {
+        // 1. Null check
+        if (adj == null) return 0;
+        if (adj.length == 0) return 0;
+
+        int n = adj.length;
+        // 2. Check if the matrix is square
+        for (int i = 0; i < n; i++) {
+            if (adj[i] == null || adj[i].length != n) {
+                throw new IllegalArgumentException("Input adjacency matrix must be non-null, square, and size N x N.");
+            }
+        }
+
         boolean[] visited = new boolean[adj.length];
         int count = 0;
 
