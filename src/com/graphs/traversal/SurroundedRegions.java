@@ -39,7 +39,7 @@ public class SurroundedRegions {
 
         for(int i =0; i< row; i++){
             for(int j =0; j< col; j++){
-                if(mat[i][j] == 'O' && (i == 0 || j == 0 || i == row - 1 || j == col - 1){
+                if(mat[i][j] == 'O' && (i == 0 || j == 0 || i == row - 1 || j == col - 1)){
                     bfs(mat, i, j, row, col);
                 }
             }
@@ -54,7 +54,7 @@ public class SurroundedRegions {
         return mat;
     }
 
-    private void bfs(char[][] mat, int row, int col, int rows, int cols){
+    private static void bfs(char[][] mat, int row, int col, int rows, int cols){
         int[][] directions = {{1,0},{0,1},{0,-1},{-1,0}};
         Queue <int[]> queue = new LinkedList<>();
         queue.offer(new int[]{row,col});
