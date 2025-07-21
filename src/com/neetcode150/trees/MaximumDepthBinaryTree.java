@@ -1,7 +1,6 @@
 package com.neetcode150.trees;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Given the root of a binary tree, return its depth.
@@ -43,5 +42,4 @@ public class MaximumDepthBinaryTree {
         }
         return 1 + Math.max(maxDepthDFS(root.left), maxDepthDFS(root.right));
     }
-
 }
