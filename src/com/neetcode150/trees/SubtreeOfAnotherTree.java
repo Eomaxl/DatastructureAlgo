@@ -50,3 +50,5 @@ public class SubtreeOfAnotherTree {
         return false;
     }
 }
+
+// TC : O(m * n) , SC: O(m+n) where m is the number of nodes in subRoot and n is the number of nodes in root.
