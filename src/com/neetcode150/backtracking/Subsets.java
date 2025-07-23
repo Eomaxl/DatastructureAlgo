@@ -18,7 +18,7 @@ public class Subsets {
         }
     }
 
-    public List<List<Integer>> subsets(int[] nums){
+    public List<List<Integer>> subsets(int[] nums){   // TC : O(n * 2^n)  SC: O(n) extra space, O(2^n) for output list
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> subset = new ArrayList<>();
         dfs(nums, 0, subset, result);
