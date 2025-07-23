@@ -24,7 +24,32 @@ public class LastStoneWeight {
         LastStoneWeight lastStoneWeight = new LastStoneWeight();
         System.out.println(lastStoneWeight.lastStoneWeight(stones));
         System.out.println(lastStoneWeight.lastStoneWeight(stones2));
+        System.out.println(lastStoneWeight.lastStoneWeightMaxHeap(stones));
+        System.out.println(lastStoneWeight.lastStoneWeightMaxHeap(stones2));
     }
+
+    public int lastStoneWeightMaxHeap(int[] stones){
+        // create a max heap
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a);
+
+        // Add all stones to the heap
+        for (int stone : stones) {
+            maxHeap.add(stone);
+        }
+
+        // Continuously remove and smash the two heaviest stones
+        while (maxHeap.size() > 1) {
+            int y = maxHeap.poll(); // The heaviest stone
+            int x = maxHeap.poll(); // The second heaviest stone
+
+            if (x != y){
+                maxHeap.add(x);     // Add the remaining stone back to the heap
+            }
+        }
+        // Return the weight of the last remaining stone or 0 if no stones are left
+        return maxHeap.isEmpty() ? 0 : maxHeap.poll();
+    }
+
     public int lastStoneWeight(int[] stones) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         for(int s: stones){
