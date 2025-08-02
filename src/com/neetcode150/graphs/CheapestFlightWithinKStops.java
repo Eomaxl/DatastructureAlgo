@@ -37,4 +37,59 @@ public class CheapestFlightWithinKStops {
         }
         return -1;
     }
+
+    public int cheapestFlight(int n, int[][] flights, int src, int dst, int k){
+
+        // Store the graph
+        List<List<int[]>> adj = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            adj.add(new ArrayList<>());
+        }
+
+        // Adding edges to the list
+        for(int[] edge: flights){
+            adj.get(edge[0]).add(new int[]{edge[1], edge[2]});
+        }
+
+        // To store minimum distance
+        int[] minDistance = new int[n];
+        Arrays.fill(minDistance, Integer.MAX_VALUE);
+
+        // Queue to store elements in the form of {stops,{node,distance}}
+        Queue<int[]> q = new LinkedList<>();
+
+        // Add the source to the queue
+        q.offer(new int[]{0,src, 0});
+
+        // until the queue is empty
+        while (!q.isEmpty()){
+            // get the element from the queue
+            int[] top = q.poll();
+            int stops = top[0], node = top[1], distance = top[2];
+
+            // if the number of stops taken exceeds K, skip and move to the next element
+            if (stops > k) continue;
+
+            // traverse all the neighbors
+            for (int[] neighbor : adj.get(node)) {
+                int adjNode = neighbor[0], edgeWt = neighbor[1];
+
+                // If the tentative distance to reach adjacent node is smaller than the known distance and number of stops doesnot exceed k
+                if (distance + edgeWt < minDistance[adjNode] && stops <= k){
+
+                    // update the known distance
+                    minDistance[adjNode] = distance + edgeWt;
+
+                    // Add the element to the queue
+                    q.offer(new int[]{stops + 1, adjNode, distance + edgeWt});
+                }
+            }
+        }
+
+        // If the destination is unreachable , return -1
+        if (minDistance[dst] == Integer.MAX_VALUE) return -1;
+
+        // return the result
+        return minDistance[dst];
+    }
 }
