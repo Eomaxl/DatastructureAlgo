@@ -39,3 +39,4 @@ public class NetworkDelayTime {
         return visited.size() == n ? t : -1;
     }
 }
+// TC: O(ElogV) SC : O(V+E)
