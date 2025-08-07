@@ -5,6 +5,7 @@ import java.util.*;
 public class CourseScheduleII {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] indegree = new int[numCourses];
+
         List<List<Integer>> adj = new ArrayList<>();
         for(int i =0; i< numCourses; i++){
             adj.add(new ArrayList<>());
